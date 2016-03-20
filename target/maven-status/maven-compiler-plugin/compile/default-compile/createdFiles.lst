@@ -1,0 +1,5 @@
+com\mycompany\amazoneasyaccess\ProductDao.class
+com\mycompany\amazoneasyaccess\GenericDao.class
+com\mycompany\amazoneasyaccess\MySQLConnector.class
+com\mycompany\amazoneasyaccess\Authenticate.class
+com\mycompany\amazoneasyaccess\UserDao.class
