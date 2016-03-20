@@ -27,15 +27,17 @@ public class UserDao extends GenericDao {
     }
             
     public boolean validate() {
-        String SQL = "SELECT username FROM walmartUser WHERE username = " + username
-                + " AND password = " + password;
+        String SQL = "SELECT username FROM walmartUser WHERE username = '" + username
+                + "' AND password = '" + password + "'";
         
         String username = null;
         try {
             ResultSet rs = db.getStmt().executeQuery(SQL);
-            username = rs.getString("username");
+			if (rs.next()) {
+				username = rs.getString("username");
+			}
         } catch (SQLException ex) {
-            Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, "UserDao", ex);
         }
         
         return username != null;

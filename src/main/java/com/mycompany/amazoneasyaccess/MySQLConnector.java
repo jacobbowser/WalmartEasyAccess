@@ -29,13 +29,15 @@ public class MySQLConnector {
     
     private MySQLConnector() {
         this.host = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
+		
         if(this.host == null || this.host == "") {
             this.URL = "jdbc:mysql://localhost/" + DBname;
             this.user = "jacobbowser";
             this.pass = "password";
         }
         else {
-            this.URL = "jdbc:mysql://" + host + "/" + DBname;
+			String port = System.getenv("OPENSHIFT_MYSQL_DB_PORT");
+            this.URL = "jdbc:mysql://" + host + ":" + port + "/" + DBname;
             this.user = System.getenv("OPENSHIFT_MYSQL_DB_USERNAME");
             this.pass = System.getenv("OPENSHIFT_MYSQL_DB_PASSWORD");
         }
