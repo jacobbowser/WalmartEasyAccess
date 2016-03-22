@@ -1,5 +1,10 @@
 /Users/Quade/Developer/cs313/WalmartEasyAccess/src/main/java/com/mycompany/amazoneasyaccess/Authenticate.java
-/Users/Quade/Developer/cs313/WalmartEasyAccess/src/main/java/com/mycompany/amazoneasyaccess/ProductDao.java
-/Users/Quade/Developer/cs313/WalmartEasyAccess/src/main/java/com/mycompany/amazoneasyaccess/GenericDao.java
-/Users/Quade/Developer/cs313/WalmartEasyAccess/src/main/java/com/mycompany/amazoneasyaccess/UserDao.java
-/Users/Quade/Developer/cs313/WalmartEasyAccess/src/main/java/com/mycompany/amazoneasyaccess/MySQLConnector.java
+/Users/Quade/Developer/cs313/WalmartEasyAccess/src/main/java/Dao/ProductDao.java
+/Users/Quade/Developer/cs313/WalmartEasyAccess/src/main/java/Dao/UserDao.java
+/Users/Quade/Developer/cs313/WalmartEasyAccess/src/main/java/Dao/GenericDao.java
+/Users/Quade/Developer/cs313/WalmartEasyAccess/src/main/java/WalmartApi/WalmartApi.java
+/Users/Quade/Developer/cs313/WalmartEasyAccess/src/main/java/WalmartApi/model/ItemJson/Item.java
+/Users/Quade/Developer/cs313/WalmartEasyAccess/src/main/java/com/mycompany/amazoneasyaccess/Search.java
+/Users/Quade/Developer/cs313/WalmartEasyAccess/src/main/java/WalmartApi/model/ItemJson/ItemList.java
+/Users/Quade/Developer/cs313/WalmartEasyAccess/src/main/java/Dao/MySQLConnector.java
+/Users/Quade/Developer/cs313/WalmartEasyAccess/src/main/java/WalmartApi/model/ApiKey.java

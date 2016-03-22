@@ -1,5 +1,10 @@
-com/mycompany/amazoneasyaccess/MySQLConnector.class
-com/mycompany/amazoneasyaccess/UserDao.class
+Dao/UserDao.class
+Dao/GenericDao.class
 com/mycompany/amazoneasyaccess/Authenticate.class
-com/mycompany/amazoneasyaccess/GenericDao.class
-com/mycompany/amazoneasyaccess/ProductDao.class
+WalmartApi/model/ApiKey.class
+WalmartApi/model/ItemJson/Item.class
+WalmartApi/model/ItemJson/ItemList.class
+com/mycompany/amazoneasyaccess/Search.class
+Dao/ProductDao.class
+Dao/MySQLConnector.class
+WalmartApi/WalmartApi.class
