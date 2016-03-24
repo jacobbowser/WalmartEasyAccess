@@ -7,8 +7,18 @@
 $(document).ready(function() {
 	$('#search').click(function() {
 		$.post("Search", { query: $('#query').val() }, function(result) {
-			console.log(result);
 			$('#results').html(result);
+			setLiClickListener();
 		})
 	})
 })
+
+
+function setLiClickListener() {
+	$('li').on('click', function() {
+		var productId = $(this).attr("data-product-id");
+		$.post("AddProuct", { productId: productId }, function(result) {
+			console.log("Success");
+		})
+	})
+}

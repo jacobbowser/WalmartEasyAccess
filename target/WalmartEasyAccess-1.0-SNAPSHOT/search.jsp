@@ -12,10 +12,8 @@
         <title>JSP Page</title>
     </head>
     <body>
-		<form>
-			<input type="text" name="query" id="query" placeholder="Enter the name of a product" />
-			<input type="button" name="search" id="search" value="Search" />
-		</form>
+		<input type="text" name="query" id="query" placeholder="Enter the name of a product" />
+		<input type="button" name="search" id="search" value="Search" />
 
 		<div id="results"></div>
 		<script type="text/javascript" src="src/jquery.min.js"></script>

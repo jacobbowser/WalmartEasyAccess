@@ -13,14 +13,23 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Jacob
  */
 public class ProductDao extends GenericDao {
-                
-    public List<String> getList(int userId) throws SQLException {
+    private int userId;
+
+	private ProductDao() { }
+
+	public ProductDao(int uderId) {
+		this.userId = userId;
+	}
+
+    public List<String> getList() throws SQLException {
         String SQL = "SELECT walmartProductId FROM product WHERE userId = " + userId;
         ResultSet rs = db.getStmt().executeQuery(SQL);
         List<String> productList = new ArrayList<>();
@@ -32,9 +41,21 @@ public class ProductDao extends GenericDao {
         return productList;
     }   
     
-    public void addProduct (int product, int userId) throws SQLException{
-        String SQL = "INSERT INTO product (productId, userId) VALUES (" + product 
-                + ", " + userId + ")";
-        ResultSet rs = db.getStmt().executeQuery(SQL);
+    public void addProduct (String productId) {
+		try {
+			String SQL = "SELECT id FROM product WHERE productId = '" + productId + "'";
+			ResultSet rs = db.getStmt().executeQuery(SQL);
+			
+			if (!rs.next()) {
+				System.out.println("Test");
+				SQL = "INSERT INTO userProduct (productId, userId) VALUES ('" +
+						productId + "', '" + userId + "')";
+				
+				db.getStmt().executeQuery(SQL);
+			}
+		} catch (SQLException ex) {
+			Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, null, ex);
+		}
+
     }
 }

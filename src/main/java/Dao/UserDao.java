@@ -16,19 +16,26 @@ import java.util.logging.Logger;
  * @author Jacob
  */
 public class UserDao extends GenericDao {
-    String username;
-    String password;
+    private String username;
+	private Integer id;
     
     private UserDao() {
     }
     
-    public UserDao(String username, String password) {
+    public UserDao(String username) {
         this.username = username;
-        this.password = password;
     }
+
+	public Integer getId() {
+		return id;
+	}
+	
+	public String getUsername() {
+		return username;
+	}
             
-    public boolean validate() {
-        String SQL = "SELECT username FROM walmartUser WHERE username = '" + username
+    public boolean validate(String password) {
+        String SQL = "SELECT username, id FROM walmartUser WHERE username = '" + username
                 + "' AND password = '" + password + "'";
         
         String username = null;
@@ -36,6 +43,7 @@ public class UserDao extends GenericDao {
             ResultSet rs = db.getStmt().executeQuery(SQL);
 			if (rs.next()) {
 				username = rs.getString("username");
+				id = rs.getInt("id");
 			}
         } catch (SQLException ex) {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, "UserDao", ex);

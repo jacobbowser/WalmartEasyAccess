@@ -45,10 +45,10 @@ public class Authenticate extends HttpServlet {
             throws ServletException, IOException, ClassNotFoundException, SQLException {
        String username = request.getParameter("username");
        String password = request.getParameter("password");
-       UserDao user = new UserDao(username, password);
+       UserDao user = new UserDao(username);
        
-        if(user.validate()) {            
-            request.getSession().setAttribute("username", username);
+        if(user.validate(password)) {            
+            request.getSession().setAttribute("user", user);
             request.getRequestDispatcher("ProductList.jsp").forward(request, response);
         }
         else {
