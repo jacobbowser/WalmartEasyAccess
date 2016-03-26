@@ -1,0 +1,17 @@
+/* 
+    Created on : Mar 23, 2016, 3:35:16 PM
+    Author     : Jacob
+*/
+
+.silver {
+    font-size:25px;
+    width:500px;
+    height:50px;
+    background-color:lightgray;
+    color:black;
+}
+
+.center {
+    text-align:center;
+}
+

