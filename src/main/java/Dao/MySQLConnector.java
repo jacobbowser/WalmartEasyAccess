@@ -36,14 +36,11 @@ public class MySQLConnector {
             this.pass = "password";
         }
         else {
-			String port = System.getenv("OPENSHIFT_MYSQL_DB_PORT");
+            String port = System.getenv("OPENSHIFT_MYSQL_DB_PORT");
             this.URL = "jdbc:mysql://" + host + ":" + port + "/" + DBname;
             this.user = System.getenv("OPENSHIFT_MYSQL_DB_USERNAME");
             this.pass = System.getenv("OPENSHIFT_MYSQL_DB_PASSWORD");
         }
-        
-        this.stmt = null;
-        this.conn = null;
         
         try {
             try {

@@ -6,12 +6,11 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<ul>
-	<c:forEach var="item" items="${result}">
-		<li data-product-id="${item.id}">
-			<img src="${item.imageUrl}" />
-			${item.name}
-			${item.price}
-		</li>
-	</c:forEach>
-</ul>
+<c:forEach var="item" items="${result}">
+    <a href="AddProduct?productId=${item.id}" class="btn btn-primary silver">
+	<img class="left" src="${item.imageUrl}" />
+        <span class="wrap">${item.name}
+            <span class="price">${item.price}</span>
+        </span>
+    </a>
+</c:forEach>

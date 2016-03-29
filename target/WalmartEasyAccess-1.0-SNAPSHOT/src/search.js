@@ -12,13 +12,3 @@ $(document).ready(function() {
 		})
 	})
 })
-
-
-function setLiClickListener() {
-	$('li').on('click', function() {
-		var productId = $(this).attr("data-product-id");
-		$.post("AddProduct", { productId: productId }, function(result) {
-			console.log("Success");
-		})
-	})
-}

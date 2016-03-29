@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.mindrot.jbcrypt.BCrypt;
 
 /**
  *
@@ -33,9 +34,8 @@ public class AddUser extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String username = request.getParameter("username");
-        String password = request.getParameter("password");
+        String password = BCrypt.hashpw(request.getParameter("password"), BCrypt.gensalt());
         //Password hashing
-        
         UserDao user = new UserDao(username);
         user.add(password);
        

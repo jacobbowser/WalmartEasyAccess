@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.mindrot.jbcrypt.BCrypt;
 
 /**
  *
@@ -49,16 +50,16 @@ public class UserDao extends GenericDao {
     }
             
     public boolean validate(String password) {
-        String SQL = "SELECT username, id FROM walmartUser WHERE username = '" + username
-                + "' AND password = '" + password + "'";
+        String SQL = "SELECT username, id, password FROM walmartUser WHERE username = '" + username + "'";
         
         String username = null;
         try {
             ResultSet rs = db.getStmt().executeQuery(SQL);
 		if (rs.next()) {
+                    if(BCrypt.checkpw(password, rs.getString("password"))) {
                     username = rs.getString("username");
                     id = rs.getInt("id");
-                    System.out.println(id);
+                    }
 		}
         } catch (SQLException ex) {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, "UserDao", ex);

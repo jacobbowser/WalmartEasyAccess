@@ -19,25 +19,21 @@
     </head>
     <body>
         <div class="center">
-            <h1>${user.username}'s Products</h1>
+            <h1 class="theBlue">${user.username}'s Products</h1>
             <!--for loop with getlist-->
-            <% 
-               // ProductDao product = new ProductDao();
-               // List<String> productList = product.getList(request.getAttribute("userId"));
-                
-                
-                %>
-            <a class="btn btn-primary silver">Apple</a><br />
+            
+            <br /><a href="search.jsp" class="btn btn-primary">Add New Product</a><br/><br />
             
             	<c:forEach var="item" items="${items}">
                     <a href="${item.addToCartUrl}" class="btn btn-primary silver">
-			<img src="${item.imageUrl}" />
-			${item.name}
-			${item.price}
-                    </a> </br>
+			<img class="left" src="${item.imageUrl}" />
+			<span class="wrap">${item.name} 
+                            <span class="price">${item.price}</span>
+                        </span>
+                    </a> <br />
                </c:forEach>
             
-            <br /><a href="search.jsp" class="btn btn-primary">Add New Product</a>
+            
         </div>
     </body>
 </html>

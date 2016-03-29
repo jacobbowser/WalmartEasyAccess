@@ -12,9 +12,10 @@
         <title>Walmart Easy Access Sign In Page</title>
         <link href="css/bootstrapStuff.css" rel="stylesheet">
         <link href="css/bootstrapSignIn.css" rel="stylesheet">
+        <link href="css/other.css" rel="stylesheet">
     </head>
     <body>
-        <h1 style="color:#337ab7;text-align:center"><b>Walmart Easy Access</b></h1>
+        <h1 class="theBlue"><b>Walmart Easy Access</b></h1>
     <div class="container">
 
       <form class="form-signin" method="POST" action="Authenticate">

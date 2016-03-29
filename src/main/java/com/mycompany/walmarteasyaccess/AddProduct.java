@@ -36,13 +36,14 @@ public class AddProduct extends HttpServlet {
 			throws ServletException, IOException {
 		UserDao user = (UserDao) request.getSession().getAttribute("user");
 		Integer userId = user.getId();
-                System.out.println("ADD PRODUCT " + userId);
 		if (userId != null) {
 			String productId = request.getParameter("productId");
 
 			ProductDao productDao = new ProductDao(userId);
 			productDao.addProduct(productId);
 		}
+                
+                request.getRequestDispatcher("LoadItems").forward(request, response);
 	}
 
 	// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -17,7 +17,7 @@
         <h1 style="color:#337ab7;text-align:center"><b>Walmart Easy Access</b></h1>
     <div class="container">
 
-      <form class="form-signin" method="POST" action="addUser">
+      <form class="form-signin" method="POST" action="AddUser">
             
         <h3 style="text-align:center" class="form-signin-heading">Please Enter Your Information</h3>
         Username:<br />

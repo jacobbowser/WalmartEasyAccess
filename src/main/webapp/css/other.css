@@ -4,13 +4,30 @@
 */
 
 .silver {
-    font-size:25px;
+    font-size:15px;
     width:500px;
-    height:50px;
+    height:120px;
     background-color:lightgray;
     color:black;
 }
 
+.theBlue {
+    color:#337ab7;
+    text-align:center;
+}
+
+.wrap {
+    white-space: normal;
+}
+
+.price {
+    font-weight:bold;
+    color:green;
+}
+
+.left {
+    float:left;
+}
 .center {
     text-align:center;
 }
