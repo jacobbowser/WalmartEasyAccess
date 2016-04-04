@@ -31,7 +31,7 @@ public class UserDao extends GenericDao {
     }
     
     private void setId() {
-        String SQL = "SELECT id FROM walmartuser WHERE username = '" + this.username  + "'";
+        String SQL = "SELECT id FROM walmartUser WHERE username = '" + this.username  + "'";
         
         try {
             ResultSet rs = db.getStmt().executeQuery(SQL);
@@ -69,7 +69,7 @@ public class UserDao extends GenericDao {
     }
     
     public void add(String password) {
-        String SQL = "INSERT INTO walmartuser (username, password) VALUES ('" 
+        String SQL = "INSERT INTO walmartUser (username, password) VALUES ('" 
                 + this.username + "', '" + password + "')";  
         
         try {

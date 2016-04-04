@@ -32,3 +32,15 @@
     text-align:center;
 }
 
+#loading {
+	margin-top: 40px;
+	font-size: 2em;
+	display: none;
+}
+
+#query {
+	position: relative;
+	height: 36px;
+	top: 1px;
+}
+

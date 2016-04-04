@@ -17,9 +17,10 @@
     <body>
         <div class="center">
             <h1 class="theBlue">Add New Product</h1>
-            <input type="text" name="query" id="query" placeholder="Enter Product" /><br />
-            <br /><input type="button" name="search" id="search" value="Search" class="btn btn-primary" />
-            <br />
+            <input type="text" name="query" id="query" placeholder="Enter Product" />
+            <input type="button" name="search" id="search" value="Search" class="btn btn-primary" />
+			<div id="loading">Loading Results</div>
+			<br /><br />
             <div id="results"></div>
             <script type="text/javascript" src="src/jquery.min.js"></script>
             <script type="text/javascript" src="src/search.js"></script>

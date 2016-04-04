@@ -15,6 +15,24 @@ public class Item {
 	private String salePrice;
 	private String thumbnailImage;
 	private String addToCartUrl;
+	private String stock;
+	private boolean availableOnline;
+
+	private String checkPriceFormat() {
+		String price;
+
+		int dotIndex = salePrice.indexOf('.');
+		String cents = salePrice.substring(dotIndex + 1);
+
+		if (cents.length() < 2) {
+			cents += '0';
+			price = salePrice.substring(0, dotIndex + 1) + cents;
+		} else {
+			price = salePrice;
+		}
+
+		return price;
+	}
 
 	public String getName() {
 		return name;
@@ -25,7 +43,7 @@ public class Item {
 	}
 
 	public String getPrice() {
-		return "$" + salePrice;
+		return "$" + checkPriceFormat();
 	}
 
 	public String getImageUrl() {
@@ -34,5 +52,13 @@ public class Item {
 
 	public String getAddToCartUrl() {
 		return addToCartUrl;
+	}
+
+	public String getStock() {
+		return stock;
+	}
+
+	public boolean getAvailableOnline() {
+		return availableOnline;
 	}
 }

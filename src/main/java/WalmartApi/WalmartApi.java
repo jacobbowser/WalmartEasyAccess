@@ -13,6 +13,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,7 +35,15 @@ public class WalmartApi {
 
 		Gson gson = new Gson();
 		ItemList list = gson.fromJson(json, ItemList.class);
-		return list.getItems();
+		List<Item> items = new ArrayList<>();
+
+		for (Item item : list.getItems()) {
+			if (item.getStock().equals("Available") && item.getAvailableOnline()) {
+				items.add(item);
+			}
+		}
+
+		return items;
 	}
 
 	public static Item lookUp(String id) {

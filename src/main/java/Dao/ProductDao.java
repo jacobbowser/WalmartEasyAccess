@@ -33,7 +33,7 @@ public class ProductDao extends GenericDao {
 
     public List<Item> getList() {
         try {
-            String SQL = "SELECT walmartId FROM product JOIN userproduct ON userId " +
+            String SQL = "SELECT walmartId FROM product JOIN userProduct ON userId " +
                     "WHERE userId = '" + userId + "' and productId = product.id";
 
             List<Item> productList = new ArrayList<>();
@@ -68,17 +68,16 @@ public class ProductDao extends GenericDao {
                                     productId = key.getInt(1);
                                 }
                         }
-                        SQL = "SELECT productId FROM userproduct WHERE userId = '" + userId +
+                        SQL = "SELECT productId FROM userProduct WHERE userId = '" + userId +
                                 "' AND productId = '" + productId + "'";
                         rs = db.getStmt().executeQuery(SQL);
                         if(!rs.next()) {
-			SQL = "INSERT INTO userproduct (productId, userId) VALUES ('" +
+			SQL = "INSERT INTO userProduct (productId, userId) VALUES ('" +
 				productId + "', '" + userId + "')";
 			db.getStmt().executeUpdate(SQL);
                         }
 		} catch (SQLException ex) {
 			Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, null, ex);
 		}
-
     }
 }
